@@ -1,0 +1,2 @@
+# myalexnet_forward_tf2.0
+I am pleased to update the AlexNet to adapt to TensorFlow 2.0. Since the original script of myalexnet_forward written by Alex was build on TensorFlow 1.x in 2017, it has generated many errors during the runtime in the environment of TensorFlow 2.0. Either Alex has no update, or it is very hard to find out the AlexNet for TensorFlow 2.0 based on Alex's original version. Considering AlexNet is a milestone DNN model, it is exciting for me to share the new update. 
