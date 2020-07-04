@@ -11,7 +11,7 @@ AlexNet implementation in TensorFlow, with weights Details:
 Stanford c231n 
 https://cs231n.github.io/convolutional-networks/#conv
 
-The script is the realizatio of command oriented style of AlexNet. It is similar to the original style 
+The script is the realization of command oriented style of AlexNet. It is similar to the original style 
 of AlexNet realization by Michael Guerzhoy on 2017. In consideration of the actual inputs with 1000 
 classes, we set the same class numbers. 
 
@@ -25,7 +25,7 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout, Flatten, Conv2D, MaxPooling2D
 
-# Generate the random integer from 2 to 1000
+# Set the class number as 1000
 num_classes = 1000
 # Instantiate an empty model
 model = Sequential()
