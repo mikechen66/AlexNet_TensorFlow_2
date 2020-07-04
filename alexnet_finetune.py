@@ -1,7 +1,7 @@
-#####################################################################################
+###############################################################################################
 #
 #Mike Chen updates the script to be compatible with TensorFlow 2.x since the original
-#script was written in TensorFlow 1.7. 
+#script written in TensorFlow 1.7 could not be run on TensotFlow 2.x. 
 #Giancarlo Zaccone and Md. Rezaul Karim
 #Deep Learning with TensorFlow Second Edition
 #Michael Guerzhoy and Davi Frossard, 2016
@@ -12,6 +12,31 @@
 #With code from https://github.com/ethereon/caffe-tensorflow
 #Model from  https://github.com/BVLC/caffe/tree/master/models/bvlc_alexnet
 #Weights from Caffe converted using https://github.com/ethereon/caffe-tensorflow
+#
+#The self-contained script includes most of the lines of code of  myalexnet_forward_tf2.py. It is 
+#a headache that almost all the available alexnet finetune script found in Google could not be run
+#or executed to generate many errors. Even Frederik Kratzert has not yet updated his finetune script
+#written in 2017. The fact addresses the monthly changes of TensorFlow make some veteran developers 
+#being far away from TensorFlow. 
+
+#The script is an opportunity for users to learn from the classical model - AlexNet. It paves the 
+#way for users to have a continuous attention on the AlexNet model and bridge between the past, the 
+#present and the future. 
+#
+#There are some prerequisites as follows. 
+#
+#1.Download bvlc_alexnet.npy
+#http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/bvlc_alexnet.npy
+#
+#2.Download dogs-vs-cats data from Kaggle and unzip into a fileholder such as AlexNet-Finetune
+#https://www.kaggle.com/c/dogs-vs-cats/data
+#
+#3.Put the script into the fileholder and then execute the script
+# $ cd /home/user/Documents/AlexNet-Finetune
+#
+# $ python3  alexnet_finetune.py 
+#
+#It will run iterations and show a picture.
 #
 #####################################################################################
 #import tensorflow as tf
