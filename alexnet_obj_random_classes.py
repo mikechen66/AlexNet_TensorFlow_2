@@ -1,4 +1,4 @@
-# AlexNet Model
+# AlexNet Model in the Object Oriented Programming 
 
 """
 AlexNet, Krizhevsky, Alex, Ilya Sutskever and Geoffrey E. Hinton, 2012
@@ -11,10 +11,10 @@ AlexNet implementation in TensorFlow, with weights Details:
 Stanford c231n 
 https://cs231n.github.io/convolutional-networks/#conv
 
-The script is the realizatio of object oriented style of AlexNet. The construction method of AlexNet 
-includes three parameters, including self, input_shape, num_classes, of which, input_shape works as a 
-placeholder. In consideration of the actual inputs has at least 2 classes, we set the class nunber from 
-2 t0 1000. 
+The script is the realization of object oriented style of AlexNet. The construction method of AlexNet 
+includes three parameters, including self, input_shape and num_classes, of which, input_shape works as a 
+placeholder. In consideration of the actual inputs has at least 2 classes, we set the class number from 
+2 t0 1000with a random number generator. 
 
 According to the formula of Stanford cs231, W_output=(W-F+2P)S+1. W,F,P,S are input width, filter width, 
 padding size and stride respectively. It is apparent result of H_output=W_output since we requires square 
