@@ -9,6 +9,7 @@
 The User Guide: 
 
 Part One
+
 To use the script in Python, users need to create the folder such as AlexNet-tf2. The application 
 automatically downloads the pictures into the created folders. 
 
@@ -21,7 +22,7 @@ Part Two. Script running procedure
 Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
 users need to follow the procedures. 
 
-1. Script running command
+2. Script running command
 
   In the Conda Environment, please execute the following command in the Ubuntu terminal at the current 
   directory.  
@@ -49,7 +50,7 @@ users need to follow the procedures.
   ['...']
   
 
-2. Start the TensorBoard
+3. Start the TensorBoard
 
    After completing the script excution, users can start the TensorBoard command in the Linux Terminal 
    at the current directory. 
@@ -60,15 +61,25 @@ users need to follow the procedures.
   Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
   TensorBoard 2.2.1 at http://localhost:6006/ (Press CTRL+C to quit)
 
-3. Enter the weblink in a browser
+4. Enter the weblink in a browser
    After entering the weblink into either Chrome or Firefox browser, the TensorBoard will show the diagrams
    that the scrip defines. 
    http://localhost:6006/
 
-4. Images showing 
+5. Images showing 
    The browser could not show the images. If users want to plot the images, please upload the Python script 
    into the Jupyter Notebook or just directly adopts the original ipython script. 
 
+Part Three Trouble shooting 
+
+Issue: 
+AttributeError: module 'tensorflow' has no attribute 'compat'
+
+Solution: 
+It is the conflict between Conda and TensorFlow 2.x if users adopt the Anaconda/Miniconda env. I recommend 
+the users to install tensorflow 2.1 and then install tensorflw-estimator as follows. 
+
+$ conda install tensorflow-estimator==2.1.0
 """
 
 import datetime
