@@ -6,80 +6,11 @@
 # http://media5.datahacker.rs/2018/06/logo-crno.png)
 
 """
-The User Guide: 
-
-Part One
-
-To use the script in Python, users need to create the folder such as AlexNet-tf2. The application 
-automatically downloads the pictures into the created folders. 
-
-Part Two. Script running procedure
-
-1. Enter into current directory
-
-   $ cd /home/john/Documents/Alexnet_Callback
-
-Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
-users need to follow the procedures. 
-
-2. Script running command
-
-  In the Conda Environment, please execute the following command in the Ubuntu terminal at the current 
-  directory.  
-  
-  $ python alexnet_classifying.py  
-  
-  or 
-
-  In the native Ubuntu 18.04 env, please execute the following command. 
-
-  $ python3 alexnet_classifying.py
-
-  While executing the above-mentioned command, the Linux Terminal shows the arrays of image name ended 
-  with jpg. 
-
-  Moreover, the Terminal show the complete Model: alex_net". Furthermore, it show "Found 117 images 
-  belonging to 2 classes". 
-
-  In the meantime, it also address the following warning. However, users can ignore the warning becuase it
-  does not influence the script running. 
-
-  WARNING:tensorflow:sample_weight modes were coerced from
-  ...
-    to  
-  ['...']
-  
-
-3. Start the TensorBoard
-
-   After completing the script excution, users can start the TensorBoard command in the Linux Terminal 
-   at the current directory. 
-
-  $ tensorboard --logdir logs/fit
-
-  After the above-mentioned command is given, the ｔerminal shows the reminding message as follows. 
-  Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
-  TensorBoard 2.2.1 at http://localhost:6006/ (Press CTRL+C to quit)
-
-4. Enter the weblink in a browser
-   After entering the weblink into either Chrome or Firefox browser, the TensorBoard will show the diagrams
-   that the scrip defines. 
-   http://localhost:6006/
-
-5. Images showing 
-   The browser could not show the images. If users want to plot the images, please upload the Python script 
-   into the Jupyter Notebook or just directly adopts the original ipython script. 
-
-Part Three Trouble shooting 
-
-Issue: 
-AttributeError: module 'tensorflow' has no attribute 'compat'
-
-Solution: 
-It is the conflict between Conda and TensorFlow 2.x if users adopt the Anaconda/Miniconda env. I recommend 
-the users to install tensorflow 2.1 and then install tensorflw-estimator as follows. 
-
-$ conda install tensorflow-estimator==2.1.0
+# Set up the GPU in the condition of allocation exceeds system memory with the reminding message: Could not 
+# create cuDNN handle... The following lines of code can avoids the sudden stop of the runtime. 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
 """
 
 import datetime
@@ -189,11 +120,23 @@ array4 = os.listdir('/home/john/Documents/Alexnet_Callback/content/validation/bi
 # Add the print function to show the results of images ended with jpg
 print(array1, array2, array3, array4) 
 
+
+# Set up the GPU in the condition of allocation exceeds system memory. 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+
+
 # It has pre-defined two classes including bike and ship. 
 num_classes = 2
 
 # It calls the alexnet model in alexnet.py
 model = AlexNet((227, 227, 3), num_classes)
+
+# Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 # It will output the AlexNet model after executing the command 
 model.summary()
