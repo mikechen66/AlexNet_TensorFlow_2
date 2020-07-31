@@ -88,12 +88,14 @@ class AlexNet(Sequential):
         self.add(Dense(1000, activation='relu'))
         self.add(Dense(num_classes, activation='softmax'))
 
-        self.compile(optimizer=tf.keras.optimizers.Adam(0.001),
-                     loss='categorical_crossentropy',
-                     metrics=['accuracy'])
 
 # Call the AlexNet model
 model = AlexNet((227, 227, 3), num_classes)
+
+# Compile the model 
+model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 # show the full model structure of AlexNet 
 model.summary()
