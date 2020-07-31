@@ -17,9 +17,6 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D, Dropout
 
-# -img_rows, img_cols = 227, 227
-# -input_shape = (img_rows, img_cols, 3)
-# -num_classes = 2
 
 # Define the AlexNet Model 
 class AlexNet(Sequential):
@@ -76,19 +73,5 @@ class AlexNet(Sequential):
         # No.8 FC Layer
         self.add(Dense(1000, activation='relu'))
         self.add(Dense(num_classes, activation='softmax'))
-
-        # Compile the model
-        self.compile(optimizer=tf.keras.optimizers.Adam(0.001),
-                     loss='categorical_crossentropy',
-                     metrics=['accuracy'])
-
-# Call the AlexNet model 
-# -model = AlexNet((227, 227, 3), num_classes)
-
-# show the full model structure of AlexNet 
-# -model.summary()
-
-
-
-
+        
         
