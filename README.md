@@ -93,7 +93,7 @@ users need to follow the procedures.
   
 Part Four Trouble shooting 
 
-Issue 1: 
+1. The compat issue 
 
 For the error related to the environment of TensorFlow 2.1.0, developers can make the appropriate solutions as follows. 
 
@@ -107,7 +107,7 @@ the users to install tensorflow 2.1 and then install tensorflw-estimator as foll
 $ conda install tensorflow-estimator==2.1.0
 
 
-Issue 2:
+2. The CUPTI issue
 
 For the environment of TensorFlow 2.2.0, there is the reminidng error although the scripts runs correctly. 
 
