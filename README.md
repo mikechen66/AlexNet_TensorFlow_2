@@ -115,7 +115,7 @@ E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1408] function cupti_int
 E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1447] function cupti_interface_->ActivityRegisterCallbacks( AllocCuptiActivityBuffer, FreeCuptiActivityBuffer)failed with error CUPTI_ERROR_INSUFFICIENT_PRIVILEGES
 E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1430] function cupti_interface_->EnableCallback( 0 , subscriber_, CUPTI_CB_DOMAIN_DRIVER_API, cbid)failed with error CUPTI_ERROR_INVALID_PARAMETER
 
-According to the current trace report from Nvidia CUDA Profiling Tools Interface(or shortly CUPTI), it is only the reminding message. It reminds users of the lacking super user privilege. At the presetn, it is hard to remove the reminding message. Please take the reference of the CUPTI as follows. 
+According to the current trace report from Nvidia CUDA Profiling Tools Interface(CUPTI), it is only the reminding message. It reminds users of the lacking super user privilege. At the presetn, it is hard to remove the reminding message. Please take the reference of the CUPTI as follows. 
 
 https://docs.nvidia.com/cupti/Cupti/index.html
 
