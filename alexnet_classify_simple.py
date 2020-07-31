@@ -2,11 +2,12 @@
 # coding: utf-8
 
 """
-If users run the client application again, it is not necessary to download data repeatedly. Therefore,
-the downloading lines of code are deleted. To run the script on the environment of TensorFlow 2.2.0 and
-CUDA 11.0/cudNN 8.0.1, users need to add -cap-add=CAP_SYS_ADMIN
+After completion of downloading the data with alexnet_classify.py, users can use the lightweight
+script to call alexnet.py. Therefore, the download and processing lines of code are deleted. To 
+run the script on the environment of TensorFlow 2.2.0 and CUDA 11.0/cudNN 8.0.1, users need to 
+add -cap-add=CAP_SYS_ADMIN
 
-python3 alexnet_classify_simple.py --cap-add=CAP_SYS_ADMIN
+$ python3 alexnet_classify_simple.py --cap-add=CAP_SYS_ADMIN
 """
 
 import datetime
