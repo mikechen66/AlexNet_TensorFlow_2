@@ -50,7 +50,7 @@ bikes_split_urls=bikes_str_soup.split('\r\n')
 
 # Change the original ipython code into the Python code
 path1 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train', mode=0o777)
-path1 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train/ships', mode=0o777)
+path2 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train/ships', mode=0o777)
 path3 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train/bikes', mode=0o777)
 
 path4 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/validation', mode=0o777)
