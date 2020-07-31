@@ -34,6 +34,7 @@ import PIL.Image
 import numpy as np
 from bs4 import BeautifulSoup
 
+
 # Get the ship synset
 page = requests.get("http://www.image-net.org/api/text/imagenet.synset.geturls?wnid=n04194289")
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -48,11 +49,10 @@ split_urls=str_soup.split('\r\n')
 bikes_str_soup=str(bikes_soup)
 bikes_split_urls=bikes_str_soup.split('\r\n')
 
-# Change the original ipython code into the Python code
+# Create the respective directories
 path1 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train', mode=0o777)
 path2 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train/ships', mode=0o777)
 path3 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/train/bikes', mode=0o777)
-
 path4 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/validation', mode=0o777)
 path5 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/validation/ships', mode=0o777)
 path6 = os.makedirs('/home/john/Documents/Alexnet_Callback/content/validation/bikes', mode=0o777)
@@ -63,7 +63,7 @@ input_shape = (img_rows, img_cols, 3)
 
 
 def url_to_image(url):
-	resp = urllib.request.urlopen(url)
+    resp = urllib.request.urlopen(url)
 	image = np.asarray(bytearray(resp.read()), dtype="uint8")
 	image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
@@ -72,44 +72,44 @@ def url_to_image(url):
 num_of_training_images=100
 for progress in range(num_of_training_images):
     if not split_urls[progress] == None:
-      try:
-        img = url_to_image(split_urls[progress])
-        if (len(img.shape))==3:
-          save_path = '/home/john/Documents/Alexnet_Callback/content/train/ships/img'+str(progress)+'.jpg'
-          cv2.imwrite(save_path,img)
-      except:
-        None
+        try:
+            img = url_to_image(split_urls[progress])
+            if (len(img.shape))==3:
+                save_path = '/home/john/Documents/Alexnet_Callback/content/train/ships/img'+str(progress)+'.jpg'
+                cv2.imwrite(save_path,img)
+        except:
+            None
 
 for progress in range(num_of_training_images):
     if not bikes_split_urls[progress] == None:
-      try:
-        img = url_to_image(bikes_split_urls[progress])
-        if (len(img.shape))==3:
-          save_path = '/home/john/Documents/Alexnet_Callback/content/train/bikes/img'+str(progress)+'.jpg'
-          cv2.imwrite(save_path,img)
-      except:
-        None
+        try:
+            img = url_to_image(bikes_split_urls[progress])
+            if (len(img.shape))==3:
+                save_path = '/home/john/Documents/Alexnet_Callback/content/train/bikes/img'+str(progress)+'.jpg'
+                cv2.imwrite(save_path,img)
+        except:
+            None
 
 num_of_validation_images=50
 for progress in range(num_of_validation_images):
     if not split_urls[progress] == None:
-      try:
-        img = url_to_image(split_urls[num_of_training_images+progress])
-        if (len(img.shape))==3:
-          save_path = '/home/john/Documents/Alexnet_Callback/content/validation/ships/img'+str(progress)+'.jpg'
-          cv2.imwrite(save_path,img)
-      except:
-        None
+        try:
+            img = url_to_image(split_urls[num_of_training_images+progress])
+            if (len(img.shape))==3:
+                save_path = '/home/john/Documents/Alexnet_Callback/content/validation/ships/img'+str(progress)+'.jpg'
+                cv2.imwrite(save_path,img)
+        except:
+            None
 
 for progress in range(num_of_validation_images):
     if not bikes_split_urls[progress] == None:
-      try:
-        img = url_to_image(bikes_split_urls[num_of_training_images+progress])
-        if (len(img.shape))==3:
-          save_path = '/home/john/Documents/Alexnet_Callback/content/validation/bikes/img'+str(progress)+'.jpg'
-          cv2.imwrite(save_path,img)
-      except:
-        None
+        try:
+            img = url_to_image(bikes_split_urls[num_of_training_images+progress])
+            if (len(img.shape))==3:
+                save_path = '/home/john/Documents/Alexnet_Callback/content/validation/bikes/img'+str(progress)+'.jpg'
+                cv2.imwrite(save_path,img)
+        except:
+            None
  
 # Modify the original ipython code into the lines of code in Python          
 array1 = os.listdir('/home/john/Documents/Alexnet_Callback/content/train/ships')
@@ -214,11 +214,11 @@ fig.subplots_adjust(left=0, right=1, bottom=0, top=1, hspace=0.05, wspace=0.05)
 
 # Plot the images: each image is 227x227 pixels
 for i in range(8):
-  ax = fig.add_subplot(2, 4, i + 1, xticks=[], yticks=[])
-  ax.imshow(x_valid[i,:], cmap=plt.cm.gray_r, interpolation='nearest')
-  if prediction_values[i] == np.argmax(label_batch[i]):
-    # Label the image with the blue text
-    ax.text(3, 17, class_names[prediction_values[i]], color='blue', fontsize=14)
-  else:
-    # Label the image with the red text
-    ax.text(3, 17, class_names[prediction_values[i]], color='red', fontsize=14)
+    ax = fig.add_subplot(2, 4, i + 1, xticks=[], yticks=[])
+    ax.imshow(x_valid[i,:], cmap=plt.cm.gray_r, interpolation='nearest')
+    if prediction_values[i] == np.argmax(label_batch[i]):
+        # Label the image with the blue text
+        ax.text(3, 17, class_names[prediction_values[i]], color='blue', fontsize=14)
+    else:
+        # Label the image with the red text
+        ax.text(3, 17, class_names[prediction_values[i]], color='red', fontsize=14)
