@@ -17,7 +17,7 @@ TensorFlow 2.1.0
 Keras 2.3.1 
 
 
-2.For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
+2. For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
 
 Miniconda 4.8.3
 Ubuntu 18.04 LTS
@@ -35,13 +35,13 @@ automatically downloads the pictures into the created folders.
 
 Part Three. Script running procedure
 
-1.Enter into current directory
+1. Enter into current directory
    $ cd /home/john/Documents/Alexnet_Callback
    
 Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
 users need to follow the procedures. 
 
-2.Script running command
+2. Script running command
 
   In the TensorFlow 2.1.0 environment, please execute the following command in the Ubuntu terminal at the current 
   directory.  
