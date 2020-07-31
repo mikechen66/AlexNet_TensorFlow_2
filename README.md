@@ -16,7 +16,6 @@ cuDNN 7.3.1
 TensorFlow 2.1.0
 Keras 2.3.1 
 
-
 2. For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
 
 Miniconda 4.8.3
