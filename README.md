@@ -5,9 +5,9 @@ I am pleased to update the AlexNet and its variants to adapt to TensorFlow 2.0/2
 """
 The User Guide: 
 
-Part One. Development Environment
+# Development Environment
 
-1. For the following development environment, develoeprs can direcly run the script. 
+## For the following development environment, develoeprs can direcly run the script. 
 
 Miniconda 4.8.3
 Ubuntu 18.04 LTS
@@ -16,7 +16,7 @@ cuDNN 7.3.1
 TensorFlow 2.1.0
 Keras 2.3.1 
 
-2. For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
+## For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
 
 Miniconda 4.8.3
 Ubuntu 18.04 LTS
@@ -26,21 +26,22 @@ TensorFlow 2.2.0
 Keras 2.4.4
 
 
-Part Two. Folders 
+# Folders 
 
 To use the script in Python, users need to create the folder such as Alexnet_Callback. The application 
 automatically downloads the pictures into the created folders. 
 
 
-Part Three. Script running procedure
+# Script running procedure
 
-1. Enter into current directory
+## Enter into current directory
+
    $ cd /home/john/Documents/Alexnet_Callback
    
 Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
 users need to follow the procedures. 
 
-2. Script running command
+## Script running command
 
   In the TensorFlow 2.1.0 environment, please execute the following command in the Ubuntu terminal at the current 
   directory.  
@@ -68,7 +69,8 @@ users need to follow the procedures.
   ['...']
  
   
-3. Start the TensorBoard
+## Start the TensorBoard
+
    After completing the script excution, users can start the TensorBoard command in the Linux Terminal 
    at the current directory. 
    
@@ -78,21 +80,21 @@ users need to follow the procedures.
   Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
   TensorBoard 2.2.1 at http://localhost:6006/ (Press CTRL+C to quit)
   
-4. Enter the weblink in a browser
+## Enter the weblink in a browser
 
    After entering the weblink into either Chrome or Firefox browser, the TensorBoard will show the diagrams
    that the scrip defines. 
    http://localhost:6006/
    
-5. Images showing 
+## Images showing 
 
    The browser could not show the images. If users want to plot the images, please upload the Python script 
    into the Jupyter Notebook or just directly adopts the original ipython script. 
   
   
-Part Four Trouble shooting 
+# Trouble shooting 
 
-1. The compat issue 
+## The compat issue 
 
 For the error related to the environment of TensorFlow 2.1.0, developers can make the appropriate solutions as follows. 
 
@@ -106,7 +108,7 @@ the users to install tensorflow 2.1 and then install tensorflw-estimator as foll
 $ conda install tensorflow-estimator==2.1.0
 
 
-2. The CUPTI issue
+## The CUPTI issue
 
 For the environment of TensorFlow 2.2.0, there is the reminidng error although the scripts runs correctly. 
 
