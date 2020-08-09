@@ -1,0 +1,24 @@
+Notes: 
+
+1.How to run the script
+
+It is necessary to run the scripts with the following command. 
+
+$ python client_classes_150.py 
+
+
+2.Dataset Download 
+
+Please download the dataset on Kaggle with an registered account and save it into a designated directory. 
+
+
+https://www.kaggle.com/thedagger/pokemon-generation-one
+
+3.Dataset Quality
+
+It is a sample dataset of pokemon with a quite larger dataset. However, some of the images has the warning as follows: 
+
+PNG warning: iCCP: known incorrect sRGB profile
+
+User can ignore the warning message. Otherwise, the users need to use ImageMagick to remove the bad images and then run the script. ImageMagick is an good tool but has a quite longer learning curve. 
+

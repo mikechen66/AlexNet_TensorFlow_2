@@ -1,0 +1,24 @@
+
+Step 420 : Loss is:  0.2023465782403946  Accuracy:  0.84126985
+2020-08-08 06:48:05.572581: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:06.897292: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:06.897318: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: cHRM chunk does not match sRGB
+2020-08-08 06:48:06.943286: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:06.943309: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: cHRM chunk does not match sRGB
+2020-08-08 06:48:08.145235: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:08.238872: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:08.371009: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:08.437401: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: too many profiles
+
+
+Step 430 : Loss is:  0.14475756883621216  Accuracy:  0.93125
+2020-08-08 06:48:08.864087: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.040046: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.335659: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.469606: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.670056: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.921866: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:09.936872: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:11.181539: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+2020-08-08 06:48:11.473615: W tensorflow/core/lib/png/png_io.cc:88] PNG warning: iCCP: known incorrect sRGB profile
+
