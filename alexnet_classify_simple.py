@@ -32,31 +32,6 @@ import numpy as np
 from bs4 import BeautifulSoup
 
 
-# Confirm the directories 
-path1 = '/home/john/Documents/Alexnet_Callback/content/train'
-path2 = '/home/john/Documents/Alexnet_Callback/content/train/ships'
-path3 = '/home/john/Documents/Alexnet_Callback/content/train/bikes'
-
-path4 = '/home/john/Documents/Alexnet_Callback/content/validation'
-path5 = '/home/john/Documents/Alexnet_Callback/content/validation/ships'
-path6 = '/home/john/Documents/Alexnet_Callback/content/validation/bikes'
-
-
-# Dimentions of input images
-img_rows, img_cols = 32, 32
-input_shape = (img_rows, img_cols, 3)
-
- 
-# Modify the original ipython code into the lines of code in Python          
-array1 = os.listdir('/home/john/Documents/Alexnet_Callback/content/train/ships')
-array2 = os.listdir('/home/john/Documents/Alexnet_Callback/content/train/bikes')
-array3 = os.listdir('/home/john/Documents/Alexnet_Callback/content/validation/ships')
-array4 = os.listdir('/home/john/Documents/Alexnet_Callback/content/validation/bikes')
-
-# Add the print function to show the results of images ended with jpg
-print(array1, array2, array3, array4) 
-
-
 # Set up the GPU in the condition of allocation exceeds system memory.The following lines 
 # of code can avoids the sudden stop of the runtime. 
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -64,13 +39,44 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
 
+# Confirm the directories 
+path1 = '/home/mike/Documents/Alexnet_Callback/content/train'
+path2 = '/home/mike/Documents/Alexnet_Callback/content/train/ships'
+path3 = '/home/mike/Documents/Alexnet_Callback/content/train/bikes'
+path4 = '/home/mike/Documents/Alexnet_Callback/content/validation'
+path5 = '/home/mike/Documents/Alexnet_Callback/content/validation/ships'
+path6 = '/home/mike/Documents/Alexnet_Callback/content/validation/bikes'
+
+
 # It has pre-defined two classes including bike and ship. 
+EPOCHS = 100
+BATCH_SIZE = 32
+image_width = 227
+image_height = 227
+channels = 3
 num_classes = 2
 
-# It calls the alexnet model in alexnet.py
+
+# Change the original images dimentions to 32 x 32. 
+img_rows, img_cols = 32, 32
+input_shape = (img_rows, img_cols, 3)
+
+ 
+# Modify the original ipython code into the lines of code in Python          
+array1 = os.listdir('/home/mike/Documents/Alexnet_Callback/content/train/ships')
+array2 = os.listdir('/home/mike/Documents/Alexnet_Callback/content/train/bikes')
+array3 = os.listdir('/home/mike/Documents/Alexnet_Callback/content/validation/ships')
+array4 = os.listdir('/home/mike/Documents/Alexnet_Callback/content/validation/bikes')
+
+
+# Add the print function to show the results of images ended with jpg
+print(array1, array2, array3, array4) 
+
+
+# Call the alexnet model in alexnet.py
 model = AlexNet((227, 227, 3), num_classes)
 
-#Compile the model
+# Compile the model
 model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
@@ -79,16 +85,13 @@ model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
 model.summary()
 
 
-# Give some training parameters
-EPOCHS = 100
-BATCH_SIZE = 32
-image_height = 227
-image_width = 227
-train_dir = '/home/john/Documents/Alexnet_Callback/content/train'
-valid_dir = '/home/john/Documents/Alexnet_Callback/content/validation'
-model_dir = '/home/john/Documents/Alexnet_Callback/content/my_model.h5'
+# Designate the directories for training, validation and model saved. 
+train_dir = '/home/mike/Documents/Alexnet_Callback/content/train'
+valid_dir = '/home/mike/Documents/Alexnet_Callback/content/validation'
+model_dir = '/home/mike/Documents/Alexnet_Callback/content/my_model.h5'
 
 
+# Assign both the image and the diretory generators
 train_datagen = ImageDataGenerator(rescale=1./255,
                                    rotation_range=10,
                                    width_shift_range=0.1,
@@ -118,13 +121,14 @@ train_num = train_generator.samples
 valid_num = valid_generator.samples
 
 
-# Start Tensorboard --logdir logs/fit
+# Need to start the following command in Ubuntu Terminal after executing the script. 
+# tensorboard --logdir logs/fit
 log_dir="logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
 callback_list = [tensorboard_callback]
 
-# The system starts the training. We change the verbose=0 to verbose=1. So users can see the dynamic 
-# precudure of training and validation execution. 
+
+# Set up the verbose=1 (or verbose=1) for visible (or invisible) epochs. 
 model.fit(train_generator,
           epochs=EPOCHS,
           steps_per_epoch=train_num//BATCH_SIZE,
@@ -132,6 +136,7 @@ model.fit(train_generator,
           validation_steps=valid_num//BATCH_SIZE,
           callbacks=callback_list,
           verbose=1)
+
 
 # The system saves the whole model into the direcotry: /home/mike/Documents/AlexNet-tf2/content. The 
 # model of my_model.h5 has the quite big size of 748.6 MB. 
@@ -143,6 +148,7 @@ model.save(model_dir)
 class_names = ['bike', 'ship']
 x_valid, label_batch  = next(iter(valid_generator))
 prediction_values = model.predict_classes(x_valid)
+
 
 # The plot will be realized in the Jupyter Notebook after running the script in either Python or 
 # ipython. 
