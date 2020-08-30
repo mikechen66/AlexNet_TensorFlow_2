@@ -1,0 +1,8 @@
+
+Please download bvlc_alexnet.npy 
+
+bvlc_alexnet.npy -- the weights; they need to be in the working directory
+
+weblink: http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/
+
+

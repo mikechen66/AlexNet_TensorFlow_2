@@ -1,0 +1,13 @@
+# myalexnet_forward_tf2
+
+
+I am pleased to update the AlexNet to adapt to TensorFlow 2.0. Since the original script of myalexnet_forward written by Alex was build on TensorFlow 1.x in 2017, it has generated many errors during the runtime in the environment of TensorFlow 2.x. 
+
+Either Alex has no update, or it is very hard to find out the AlexNet for TensorFlow 2.0 based on Alex's original version. Considering AlexNet is the milestone DNN model, it is exciting for me to share the new update. 
+
+Please go to the file of bvlc_alexnet.npy_download to get the necessary weight data. 
+
+To run the script on the environment of TensorFlow 2.2.0 and CUDA 11.0/cudNN 8.0.1, users need to add -cap-add=CAP_SYS_ADMIN
+
+$ myalexnet_forward_tf2.py --cap-add=CAP_SYS_ADMIN
+
