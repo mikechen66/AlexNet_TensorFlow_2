@@ -8,9 +8,9 @@ The script is the realization of object-oriented style of the AlexNet model with
 consolidated structure in the purely Tensorflow 2.x. We set the class number from 1 t0 1000 with a 
 random number generator. 
 
-According to the formula of Stanford cs231, W_output=(W-F+2P)S+1. W,F,P,S are input width, filter width, 
-padding size and stride respectively. It is the apparent result of H_output = W_output since we requires 
-square size of filters.
+According to the formula of Stanford cs231, W_output = (W-F+2P)/S + 1. W,F,P,S are input width, filter 
+width, padding size and stride respectively. It is the apparent result of H_output = W_output since we 
+requires the square size of filters.
 
 Stanford c231n 
 https://cs231n.github.io/convolutional-networks/#conv
