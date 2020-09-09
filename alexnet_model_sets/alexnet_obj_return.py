@@ -25,9 +25,9 @@ model.
 ##4. Use a client script to call the AlexNet model 
 # model = alexnet_obj_return.AlexNet.build(INPUT_SHAPE, NUM_CLASSES)
 
-According to the formula of Stanford cs231, W_output=(W-F+2P)S+1. W,F,P,S are input width, filter width, 
-padding size and stride respectively. It is the apparent result of H_output = W_output since we requires 
-square size of filters.
+According to the formula of Stanford cs231, W_output = (W-F+2P)/S + 1. W,F,P,S are input width, filter 
+width, padding size and stride respectively. It is the apparent result of H_output = W_output since we 
+requires the square size of filters.
 
 Stanford c231n 
 https://cs231n.github.io/convolutional-networks/#conv
