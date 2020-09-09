@@ -8,9 +8,9 @@ The script is the realization of commandline-oriented style of AlexNet with Batc
 similar to the original AlexNet by Michael Guerzhoy on 2017 but has a much consolidated structure in 
 the purely Tensorflow 2.x. We set the same 1000 class numbers accordingly. 
 
-According to the formula of Stanford cs231, W_output=(W-F+2P)S+1. W,F,P,S are input width, filter width, 
-padding size and stride respectively. It is the apparent result of H_output = W_output since we requires 
-square size of filters.
+According to the formula of Stanford cs231, W_output = (W-F+2P)/S + 1. W,F,P,S are input width, filter 
+width, padding size and stride respectively. It is the apparent result of H_output = W_output since we 
+requires the square size of filters.
 
 Stanford c231n 
 https://cs231n.github.io/convolutional-networks/#conv
