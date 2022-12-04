@@ -6,6 +6,9 @@ It renturn x by calling both self.conv_base and self.fc_base()
 https://mc.ai/training-alexnet-with-tips-and-checks-on-how-to-train-cnns-practical-cnns-in-pytorch1/
 """
 
+import torch 
+import torch.nn as nn
+
 
 class AlexNet(nn.Module):
     def __init__(self, num_classes=1000):
@@ -51,4 +54,5 @@ class AlexNet(nn.Module):
         x = self.conv_base(x)
         x = x.view(x.size(0), 256*6*6)
         x = self.fc_base(x)
+        
         return x
