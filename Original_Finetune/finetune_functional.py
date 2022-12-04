@@ -1,6 +1,6 @@
 #####################################################################################################
 #
-# Editor: Mike Chen 
+#Editor: Mike Chen 
 #updates the script to be compatible with TensorFlow 2.x since the original
 #script written in TensorFlow 1.7 could not be run on TensotFlow 2.x. 
 
