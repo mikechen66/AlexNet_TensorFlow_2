@@ -1,6 +1,6 @@
-# alexnet_with_tf2.0/2.1/2.2/2.3
+# alexnet_with_tf 2.4
 
-I am pleased to update the AlexNet and its variants to adapt to TensorFlow 2.0/2.1/2.2/2.3. Since the original script of myalexnet_forward written by AlexNet team was build on TensorFlow 1.x in 2017, it has generated many errors during the runtime in the env. of TensorFlow 2.x. Either the AlexNet team has no time to update, or it is very hard for developers to find out the AlexNet variants to adapt to TensorFlow 2.0/2.1 with the Google search. Furthermore, I split the AlexNet model in both the OOP and the pure command style and make client applications to call the AlexNet model because the AlexNet model is not seperated in most of the published scenarios which incur the difficulities for developer's deep learning. Considering that AlexNet is the great milestone in the CNNN/DNN history (Mr. Hinton has won the Turing Award in 2019 and the event is not far from fading away), it is important to continue its usability and accessibility to all developers. It is exciting for me to take the opportunity to share the new update. 
+I am pleased to update the AlexNet and its variants to adapt to TensorFlow 2.4 and the above. Since the original script of myalexnet_forward written by AlexNet team was build on TensorFlow 1.x in 2017, it has generated many errors during the runtime in the env. of TensorFlow 2.x. Either the AlexNet team has no time to update, or it is very hard for developers to find out the AlexNet variants to adapt to TensorFlow 2.0/2.1 with the Google search. Furthermore, I split the AlexNet model in both the OOP and the pure command style and make client applications to call the AlexNet model because the AlexNet model is not seperated in most of the published scenarios which incur the difficulities for developer's deep learning. Considering that AlexNet is the great milestone in the CNNN/DNN history (Mr. Hinton has won the Turing Award in 2019 and the event is not far from fading away), it is important to continue its usability and accessibility to all developers. It is exciting for me to take the opportunity to share the new update. 
 
 """
 The User Guide: 
@@ -36,7 +36,7 @@ automatically downloads the pictures into the created folders.
 
 ## Enter into current directory
 
-   $ cd /home/john/Documents/Alexnet_Callback
+   $ cd /home/user/Documents/Alexnet_Callback
    
 Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
 users need to follow the procedures. 
