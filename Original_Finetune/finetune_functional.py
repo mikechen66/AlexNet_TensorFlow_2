@@ -140,7 +140,6 @@ for i in range (1,100):
 net_data = np.load(open("bvlc_alexnet.npy", "rb"), encoding="latin1", allow_pickle=True).item()
 #net_data = load("bvlc_alexnet.npy").item()
 
-
 def conv(input, kernel, biases, k_h, k_w, c_o, s_h, s_w,  padding="VALID", group=1):
     '''From https://github.com/ethereon/caffe-tensorflow
     '''
@@ -148,7 +147,6 @@ def conv(input, kernel, biases, k_h, k_w, c_o, s_h, s_w,  padding="VALID", group
     assert c_i%group==0
     assert c_o%group==0
     convolve = lambda i, k: tf.nn.conv2d(i, k, [1, s_h, s_w, 1], padding=padding)
-    
     
     if group==1:
         conv = convolve(input, kernel)
@@ -160,9 +158,8 @@ def conv(input, kernel, biases, k_h, k_w, c_o, s_h, s_w,  padding="VALID", group
     return  tf.reshape(tf.nn.bias_add(conv, biases), [-1]+conv.get_shape().as_list()[1:])
 
 
-#Comment this line
+#Comment this line to adapt to TensorFlow 2.x
 #x = tf.placeholder(tf.float32, (None,) + xdim)
-
 
 #conv1
 #conv(11, 11, 96, 4, 4, padding='VALID', name='conv1')
@@ -186,7 +183,6 @@ lrn1 = tf.nn.local_response_normalization(conv1,
 k_h = 3; k_w = 3; s_h = 2; s_w = 2; padding = 'VALID'
 maxpool1 = tf.nn.max_pool(lrn1, ksize=[1, k_h, k_w, 1], strides=[1, s_h, s_w, 1], padding=padding)
 
-
 #conv2
 #conv(5, 5, 256, 1, 1, group=2, name='conv2')
 k_h = 5; k_w = 5; c_o = 256; s_h = 1; s_w = 1; group = 2
@@ -194,7 +190,6 @@ conv2W = tf.Variable(net_data["conv2"][0])
 conv2b = tf.Variable(net_data["conv2"][1])
 conv2_in = conv(maxpool1, conv2W, conv2b, k_h, k_w, c_o, s_h, s_w, padding="SAME", group=group)
 conv2 = tf.nn.relu(conv2_in)
-
 
 #lrn2
 #lrn(2, 2e-05, 0.75, name='norm2')
@@ -226,7 +221,6 @@ conv4b = tf.Variable(net_data["conv4"][1])
 conv4_in = conv(conv3, conv4W, conv4b, k_h, k_w, c_o, s_h, s_w, padding="SAME", group=group)
 conv4 = tf.nn.relu(conv4_in)
 
-
 #conv5
 #conv(3, 3, 256, 1, 1, group=2, name='conv5')
 k_h = 3; k_w = 3; c_o = 256; s_h = 1; s_w = 1; group = 2
@@ -252,9 +246,8 @@ fc7W = tf.Variable(net_data["fc7"][0])
 fc7b = tf.Variable(net_data["fc7"][1])
 fc7 = tf.nn.relu_layer(fc6, fc7W, fc7b)
 
-#fc8
+#commment the line of fc8
 #fc(1000, relu=False, name='fc8')
-
 
 #comment these two following lines
 #fc8W = tf.Variable(net_data["fc8"][0])
@@ -271,11 +264,9 @@ fc8b = tf.Variable(tf.random_normal\
 
 fc8 = tf.nn.xw_plus_b(fc7, fc8W, fc8b)
 
-
 #prob
 #softmax(name='prob'))
 prob = tf.nn.softmax(fc8)
-
 
 #ADD
 loss = tf.reduce_mean\
