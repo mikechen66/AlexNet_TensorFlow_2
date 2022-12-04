@@ -49,7 +49,7 @@ users need to follow the procedures.
   
   In the TensorFlow 2.2.0 environment, please execute the following command. 
   
-  $ python3 alexnet_classifying.py --cap-add=CAP_SYS_ADMIN
+  $ python3 alexnet_classify.py --cap-add=CAP_SYS_ADMIN
   
   While executing the above-mentioned command, the Linux Terminal shows the arrays of image name ended 
   with jpg. 
