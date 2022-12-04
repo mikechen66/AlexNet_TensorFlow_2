@@ -21,7 +21,7 @@
 #3.Put the script into the fileholder and then execute the script
 # $ cd /home/user/Documents/Original_Finetune
 #
-# $ python3  finetune_functional.py 
+# $ python finetune_functional.py 
 #
 #It will run iterations and show a picture.
 
