@@ -43,7 +43,7 @@ users need to follow the procedures.
   In the TensorFlow 2.1.0 environment, please execute the following command in the Ubuntu terminal at the current 
   directory.  
   
-  $ python alexnet_classifying.py  
+  $ python alexnet_classify.py  
   
   or 
   
@@ -79,9 +79,10 @@ users need to follow the procedures.
   
 ## Enter the weblink in a browser
 
-   After entering the weblink into either Chrome or Firefox browser, the TensorBoard will show the diagrams
-   that the scrip defines. 
    http://localhost:6006/
+
+   After entering the above weblink into either Chrome or Firefox browser, the TensorBoard will show the 
+   diagrams that the scrip defines. 
    
 ## Images showing 
 
@@ -93,7 +94,7 @@ users need to follow the procedures.
 
 ## The compat issue 
 
-For the error related to the environment of TensorFlow 2.1.0, developers can make the appropriate solutions as follows. 
+For the error related to the environment of TensorFlow 2.x, developers can make the appropriate solutions as follows. 
 
 AttributeError: 
 module 'tensorflow' has no attribute 'compat'
@@ -102,7 +103,8 @@ Solution:
 
 It is the conflict between Conda and TensorFlow 2.x if users adopt the Anaconda/Miniconda env. I recommend 
 the users to install tensorflow 2.1 and then install tensorflw-estimator as follows. 
-$ conda install tensorflow-estimator==2.1.0
+
+$ conda install tensorflow-estimator==2.4.0
 
 
 ## The CUPTI issue
