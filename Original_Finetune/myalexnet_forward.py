@@ -52,7 +52,7 @@ ydim = train_y.shape[1]
 
 
 ################################################################################
-# Read Image, and change to BGR
+# Read Image and change to BGR
 
 im1 = (imageio.imread("laska.png")[:,:,:3]).astype(float32)
 im1 = im1 - mean(im1)
@@ -74,12 +74,13 @@ im2[:, :, 0], im2[:, :, 2] = im2[:, :, 2], im2[:, :, 0]
 #         .conv(3, 3, 384, 1, 1, name='conv3')
 #         .conv(3, 3, 384, 1, 1, group=2, name='conv4')
 #         .conv(3, 3, 256, 1, 1, group=2, name='conv5')
+#         .max_pool(3, 3, 2, 2, padding='VALID', name='pool5')
 #         .fc(4096, name='fc6')
 #         .fc(4096, name='fc7')
 #         .fc(1000, relu=False, name='fc8')
 #         .softmax(name='prob'))
 
-# In Python 3.5 or above, change the code to the following line of code adapt to TensorFlow 2.x. 
+# In Python 3.5 or above, change the original code to the following code adapt to TensorFlow 2.x. 
 # net_data = load("bvlc_alexnet.npy").item()
 net_data = np.load(open("bvlc_alexnet.npy", "rb"), encoding="latin1", allow_pickle=True).item()
 
@@ -95,11 +96,11 @@ def conv(input, kernel, biases, k_h, k_w, c_o, s_h, s_w,  padding="VALID", group
     if group==1:
         conv = convolve(input, kernel)
     else:
-        input_groups =  tf.split(input, group, 3)   #tf.split(3, group, input)
-        kernel_groups = tf.split(kernel, group, 3)  #tf.split(3, group, kernel) 
+        input_groups =  tf.split(input, group, 3)   # tf.split(3, group, input)
+        kernel_groups = tf.split(kernel, group, 3)  # tf.split(3, group, kernel) 
         output_groups = [convolve(i, k) for i,k in zip(input_groups, kernel_groups)]
-        conv = tf.concat(output_groups, 3)          #tf.concat(3, output_groups)
-    return  tf.reshape(tf.nn.bias_add(conv, biases), [-1]+conv.get_shape().as_list()[1:])
+        conv = tf.concat(output_groups, 3)          # tf.concat(3, output_groups)
+    return tf.reshape(tf.nn.bias_add(conv, biases), [-1]+conv.get_shape().as_list()[1:])
 
 
 x = tf.placeholder(tf.float32, (None,) + xdim)
@@ -199,6 +200,7 @@ sess.run(init)
 t = time.time()
 output = sess.run(prob, feed_dict = {x:[im1,im2]})
 ################################################################################
+
 
 # Output:
 for input_im_ind in range(output.shape[0]):
