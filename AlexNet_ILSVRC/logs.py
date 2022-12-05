@@ -2,11 +2,13 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+
 import logging
 import sys
 
-# -def get_logger(logger_name='AlexNet', file_name='logs.log'):
-def get_logger(logger_name='AlexNet2012', file_name='logs.log'):
+
+# def get_logger(logger_name='AlexNet2012', file_name='logs.log'):
+def get_logger(logger_name='AlexNet', file_name='logs.log'):
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.DEBUG)
 
