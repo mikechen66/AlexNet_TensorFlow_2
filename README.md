@@ -6,7 +6,7 @@ I am pleased to update the AlexNet and its variants from small dataset to large 
 
 ## For the following development environment, develoeprs can direcly run the script. 
 
-Miniconda 4.8.3
+Miniconda v4.8.3 ~ v22.9.0
 Ubuntu 18.04 LTS
 CUDA 10.0.130
 cuDNN 7.3.1 
