@@ -351,7 +351,7 @@ if __name__ == '__main__':
 
     lsvrc2012 = LSVRC2012(args.image_path, 128)
 
-    image_cur_batch = lsvrc2010.gen_batch
+    image_cur_batch = lsvrc2012.gen_batch
     first_batch = next(image_cur_batch)
     print("The first batch shape:", first_batch[0].shape)
     print("The first one hot vector shape:", first_batch[1].shape)
