@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# It is originally written with ipython by datahacker and re-written with python and adding some 
+# lines of code in order to adapt the Python practice by Mike Chen. 
+# http://media5.datahacker.rs/2018/06/logo-crno.png)
+
 """
 
 The User Guide: 
@@ -32,22 +36,22 @@ https://academictorrents.com/collection/imagenet-lsvrc-2015
 
 After unzipping the ILSVRC datasets, please do the following actions to adapt the scripts. 
 
-Change the filenames
- 
-bbox_train_v2, devkit_t12, img_test, img_train, img_val, sample_labels
+Change the original filenames
 
-to the filenames as follows 
+ILSVRC2012_bbox_train_v2, ILSVRC2012_img_test, ILSVRC2012_img_train, ILSVRC2012_img_val
 
-bbox_train_v2, devkit_t12, img_test, img_train, img_val, sample_labels
+to the new filenames as follows 
 
-2. Enter into current directory
+bbox_train_v2, img_test, img_train, img_val
+
+2.Enter into current directory
 
 $ cd /home/user/Documents/Alexnet_ILSVRC
 
 Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
 users need to follow the procedures. 
 
-3. Script running command
+3.Script running command
 
 In the Conda Environment, please execute the following command in the Ubuntu terminal at the current 
 directory.  
@@ -96,11 +100,10 @@ It is also an esay way to kill the GPU process with the command as follows.
 
 $ sudo kill -9 PID
 
-Please see the archived document written by paniabhisek. 
 
-# Alexnet Paper
+# AlexNet Paper
 
-  https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
+https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
 """
 
 
