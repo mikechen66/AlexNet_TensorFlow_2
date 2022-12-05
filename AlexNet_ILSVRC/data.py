@@ -29,19 +29,6 @@ from data_augment import augment
 class LSVRC2012:
     """
     Read the train data of ILSVRC2012.
-
-    Considering the path: is `~/datasets/ILSVRC2012`. This class addresses the folder structure 
-    as follows
-
-    |____devkit_t12
-    | |____data
-    | | |____ILSVRC2012_validation_ground_truth.txt
-    | | |____meta.mat
-    |____ILSVRC2012_img_train
-    | |____n01443537
-    | | |____n01443537_1.JPEG
-    |____ILSVRC2012_img_val
-    | |____ILSVRC2012_val_00000001.JPEG
     """
 
     def __init__(self, path, batch_size, augment=False):
@@ -49,7 +36,8 @@ class LSVRC2012:
         Find which folder has the kind of images and which image belongs to a folder and a category.
         :param path: The directory path for the ILSVRC2012 training data
         """
-        self.logger = logging.getLogger('AlexNet2012.ILSVRC2012')
+        # self.logger = logging.getLogger('AlexNet2012.ILSVRC2012')
+        self.logger = logging.getLogger('AlexNet.ILSVRC2012')
         self.batch_size = batch_size
         self.augment = augment
         self.image_size = (227, 227, 3)
