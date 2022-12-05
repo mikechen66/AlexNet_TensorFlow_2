@@ -1,6 +1,7 @@
 ImageNet 2012 Dataset Unage Guidelines 
 
-Read the train data of ILSVRC2012 as follows. 
+Read the train data of ILSVRC2012 with the path ~/datasets/ILSVRC2012`. This class addresses the folder structure 
+as follows
 
     |____devkit_t12
     | |____data
