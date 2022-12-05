@@ -1,0 +1,61 @@
+Introduction to usage of ILSVRC dataset
+
+The goal of this Imagenet competition is to estimate the content of photographs for the purpose of 
+retrieval and automatic annotation using a subset of the large hand-labeled ImageNet dataset 
+(10,000,000 labeled images depicting 10,000+ object categories) as training. Test images will be 
+presented with no initial annotation -- no segmentation or labels -- and algorithms will have to 
+produce labelings specifying what objects are present in the images. New test images will be 
+collected and labeled especially for this competition and are not part of the previously published 
+ImageNet dataset. T
+
+he general goal is to identify the main objects present in images. To use the script in Python, 
+users need to create the folder such as AlexNet_ILSVRC. Users need to do the following actions to 
+run the script. 
+
+1.Download ILSVRC2012 Dataset
+
+# Download the dataset 
+
+Please donwloand the ILSVRC dataset in the public dataset. Either get the dataset by registering in 
+the the official website or get the dataset via the dataset search. Since it has 150GB, users need 
+to download it in a very long time. It is very big but an exciting momment for users to access to 
+the big data. 
+
+Official Website 
+https://www.image-net.org/challenges/LSVRC/2012/
+
+Academictorrents (dowload by uTorrent): 
+
+Download and install uTorrent in Linux 
+https://www.utorrent.com/
+
+Download ILSVRC2012 Dataset
+https://academictorrents.com/collection/imagenet-lsvrc-2015
+
+# Unzip
+
+After unzipping the ILSVRC datasets, please do the following actions to adapt the scripts. 
+
+Change the original filenames
+ 
+ILSVRC2012_bbox_train_v2, ILSVRC2012_img_test, ILSVRC2012_img_train, ILSVRC2012_img_val
+
+to the new filenames as follows 
+
+bbox_train_v2, img_test, img_train, img_val
+
+2. Enter into current directory
+
+$ cd /home/user/Documents/Alexnet_ILSVRC
+
+Anaconda defaults the pre-installed Python3 and the Ubuntu 18.04 has both Python2 and Python3. Therefore, 
+users need to follow the procedures. 
+
+3. Script running command
+
+In the Conda Environment, please execute the following command in the Ubuntu terminal at the current 
+directory.  
+
+# Train the model from scrach
+
+$ python train.py /home/user/datasets/ILSVRC2012 --resume False --train true
