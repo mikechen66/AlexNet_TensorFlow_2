@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 from random import randint
 import logging
 from PIL import Image
@@ -10,8 +9,8 @@ from utils import imgs2np
 
 
 # Where is the AlexNet.data_augment
-# -logger = logging.getLogger('AlexNet.data_augment')
-logger = logging.getLogger('AlexNet2012.data_augment')
+# logger = logging.getLogger('AlexNet2012.data_augment')
+logger = logging.getLogger('AlexNet.data_augment')
 
 
 def mirror(image):
