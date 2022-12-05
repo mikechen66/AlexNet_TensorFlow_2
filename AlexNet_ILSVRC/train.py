@@ -100,6 +100,7 @@ It is also an esay way to kill the GPU process with the command as follows.
 
 $ sudo kill -9 PID
 
+Please see the archived document written by paniabhisek. 
 
 # Alexnet Paper
 
