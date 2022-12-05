@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# It is originally written with ipython by datahacker and re-written with python and adding some 
-# lines of code in order to adapt the Python practice by Mike Chen. 
-# http://media5.datahacker.rs/2018/06/logo-crno.png)
-
 """
 
 The User Guide: 
