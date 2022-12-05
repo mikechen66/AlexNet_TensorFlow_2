@@ -17,18 +17,18 @@ from PIL import Image
 
 # local modules
 from utils import preprocess
-# -from tensorflow.keras.utils import preprocess
+# from tensorflow.keras.utils import preprocess
 from utils import gen_mean_activity
-# -from tensorflow.keras.utils import gen_mean_activity
+# from tensorflow.keras.utils import gen_mean_activity
 from utils import Store
-# -from tensorflow.keras.utils import Store 
+# from tensorflow.keras.utils import Store 
 from data_augment import augment
 
 
 # Define the class of LSVRC2012 but has no parameter. 
 class LSVRC2012:
     """
-    Read the train data of ILSVRC2010.
+    Read the train data of ILSVRC2012.
 
     Considering the path: is `~/datasets/ILSVRC2012`. This class addresses the folder structure 
     as follows
@@ -49,16 +49,15 @@ class LSVRC2012:
         Find which folder has the kind of images and which image belongs to a folder and a category.
         :param path: The directory path for the ILSVRC2012 training data
         """
-        # -self.logger = logging.getLogger('AlexNet.LSVRC2010')
         self.logger = logging.getLogger('AlexNet2012.ILSVRC2012')
         self.batch_size = batch_size
         self.augment = augment
         self.image_size = (227, 227, 3)
 
         # Directory paths
-        # -path = '/media/drive1/datasets/ILSVRC2012'    ???
+        # -path = '/media/drive1/datasets/ILSVRC2012' 
         self.base_dir = path
-        # Change the original filenames with deleting "ILSVRC2012_"
+        # Delete the prefix "ILSVRC2012_" of the original filenames 
         """
         self.train_dir = os.path.join(path, 'ILSVRC2012_img_train')
         self.val_dir = os.path.join(path, 'ILSVRC2012_img_val')
@@ -180,7 +179,6 @@ class LSVRC2012:
         :param labels: list of labels for current batch, the type of labels is `list`
         """
         batch_size = len(labels)
-
         y_hat = np.zeros((batch_size, len(self.wnid2label)))
         y_hat[np.arange(batch_size), labels] = 1
 
@@ -353,6 +351,7 @@ class LSVRC2012:
             yield next(batch)
 
         raise StopIteration
+
 
 if __name__ == '__main__':
 
