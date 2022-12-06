@@ -244,6 +244,7 @@ class Store:
         for _ in range(ceil(self.data_size / self.batch_size)):
             yield self.queue.get()
 
+
 # Not give the absolute path of image_path? 
 if __name__ == '__main__':
     import argparse

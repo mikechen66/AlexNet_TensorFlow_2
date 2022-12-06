@@ -113,10 +113,7 @@ import time
 import os
 import threading
 
-# import tensorflow as tf
-import tensorflow.compat.v1 as tf
-# -tf.compat.v1.disable_eager_execution()
-tf.disable_v2_behavior()
+import tensorflow as tf
 import numpy as np
 
 from data import LSVRC2012
@@ -166,13 +163,13 @@ class AlexNet:
         Create placeholders for the graph. The input for these will be given 
         # while training or testing.
         """
-        self.input_image = tf.placeholder(tf.float32, shape=self.input_shape,
+        self.input_image = tf.compat.v1.placeholder(tf.float32, shape=self.input_shape,
                                           name='input_image')
-        self.labels = tf.placeholder(tf.float32, shape=self.output_shape,
+        self.labels = tf.compat.v1.placeholder(tf.float32, shape=self.output_shape,
                                      name='output')
-        self.learning_rate = tf.placeholder(tf.float32, shape=(),
+        self.learning_rate = tf.compat.v1.placeholder(tf.float32, shape=(),
                                             name='learning_rate')
-        self.dropout = tf.placeholder(tf.float32, shape=(),
+        self.dropout = tf.compat.v1.placeholder(tf.float32, shape=(),
                                       name='dropout')
 
     def create_tf_variables(self):
@@ -183,9 +180,9 @@ class AlexNet:
         self.cur_epoch = tf.Variable(0, name='epoch', trainable=False)
         self.cur_batch = tf.Variable(0, name='batch', trainable=False)
 
-        self.increment_epoch_op = tf.assign(self.cur_epoch, self.cur_epoch+1)
-        self.increment_batch_op = tf.assign(self.cur_batch, self.cur_batch+1)
-        self.init_batch_op = tf.assign(self.cur_batch, 0)
+        self.increment_epoch_op = tf.compat.v1.assign(self.cur_epoch, self.cur_epoch+1)
+        self.increment_batch_op = tf.compat.v1.assign(self.cur_batch, self.cur_batch+1)
+        self.init_batch_op = tf.compat.v1.assign(self.cur_batch, 0)
 
     def init_hyper_param(self):
         """
@@ -207,7 +204,7 @@ class AlexNet:
         filter_height, filter_width, in_channels = self.hyper_param[layer]['filter_size']
         out_channels = self.hyper_param[layer]['filters']
 
-        return tf.Variable(tf.truncated_normal(
+        return tf.Variable(tf.random.truncated_normal(
             [filter_height, filter_width, in_channels, out_channels],
             dtype = tf.float32, stddev = 1e-2), name = layer_name)
 
@@ -241,7 +238,7 @@ class AlexNet:
         """
         conv_bias_names = ['B' + str(i) for i in range(1, 6)]
         weights = []
-        for v in tf.trainable_variables():
+        for v in tf.compat.v1.trainable_variables():
             if 'biases' in v.name: continue
             if v.name.split(':')[0] in conv_bias_names: continue
             weights.append(v)
@@ -269,8 +266,8 @@ class AlexNet:
         """
         # Layer 1 Convolutional layer
         filter1 = self.get_filter(1, 'L1_filter')
-        l1_conv = tf.nn.conv2d(self.input_image, filter1,
-                               self.get_strides(1),
+        l1_conv = tf.nn.conv2d(input=self.input_image, filters=filter1,
+                               strides=self.get_strides(1),
                                padding = self.hyper_param['L1']['padding'],
                                name='L1_conv')
         l1_conv = tf.add(l1_conv, self.get_bias(1))
@@ -282,15 +279,15 @@ class AlexNet:
         l1_conv = tf.nn.relu(l1_conv)
 
         # Layer 1 Max Pooling layer
-        l1_MP = tf.layers.max_pooling2d(l1_conv,
+        l1_MP = tf.compat.v1.layers.max_pooling2d(l1_conv,
                                         self.hyper_param['L1_MP']['filter_size'],
                                         self.hyper_param['L1_MP']['stride'],
                                         name='L1_MP')
 
         # Layer 2 Convolutional layer
         filter2 = self.get_filter(2, 'L2_filter')
-        l2_conv = tf.nn.conv2d(l1_MP, filter2,
-                               self.get_strides(2),
+        l2_conv = tf.nn.conv2d(input=l1_MP, filters=filter2,
+                               strides=self.get_strides(2),
                                padding = self.hyper_param['L2']['padding'],
                                name='L2_conv')
         l2_conv = tf.add(l2_conv, self.get_bias(2, 1.0))
@@ -302,15 +299,15 @@ class AlexNet:
         l2_conv = tf.nn.relu(l2_conv)
 
         # Layer 2 Max Pooling layer
-        l2_MP = tf.layers.max_pooling2d(l2_conv,
+        l2_MP = tf.compat.v1.layers.max_pooling2d(l2_conv,
                                         self.hyper_param['L2_MP']['filter_size'],
                                         self.hyper_param['L2_MP']['stride'],
                                         name='L2_MP')
 
         # Layer 3 Convolutional layer
         filter3 = self.get_filter(3, 'L3_filter')
-        l3_conv = tf.nn.conv2d(l2_MP, filter3,
-                               self.get_strides(3),
+        l3_conv = tf.nn.conv2d(input=l2_MP, filters=filter3,
+                               strides=self.get_strides(3),
                                padding = self.hyper_param['L3']['padding'],
                                name='L3_conv')
         l3_conv = tf.add(l3_conv, self.get_bias(3))
@@ -318,8 +315,8 @@ class AlexNet:
 
         # Layer 4 Convolutional layer
         filter4 = self.get_filter(4, 'L4_filter')
-        l4_conv = tf.nn.conv2d(l3_conv, filter4,
-                               self.get_strides(4),
+        l4_conv = tf.nn.conv2d(input=l3_conv, filters=filter4,
+                               strides=self.get_strides(4),
                                padding = self.hyper_param['L4']['padding'],
                                name='L4_conv')
         l4_conv = tf.add(l4_conv, self.get_bias(4, 1.0))
@@ -327,20 +324,20 @@ class AlexNet:
 
         # Layer 5 Convolutional layer
         filter5 = self.get_filter(5, 'L5_filter')
-        l5_conv = tf.nn.conv2d(l4_conv, filter5,
-                               self.get_strides(5),
+        l5_conv = tf.nn.conv2d(input=l4_conv, filters=filter5,
+                               strides=self.get_strides(5),
                                padding = self.hyper_param['L5']['padding'],
                                name='L5_conv')
         l5_conv = tf.add(l5_conv, self.get_bias(5, 1.0))
         l5_conv = tf.nn.relu(l5_conv)
 
         # Layer 5 Max Pooling layer
-        l5_MP = tf.layers.max_pooling2d(l5_conv,
+        l5_MP = tf.compat.v1.layers.max_pooling2d(l5_conv,
                                         self.hyper_param['L5_MP']['filter_size'],
                                         self.hyper_param['L5_MP']['stride'],
                                         name='L5_MP')
 
-        flatten = tf.layers.flatten(l5_MP)
+        flatten = tf.compat.v1.layers.flatten(l5_MP)
 
         # Layer 6 Fully connected layer
         # Adopt tf.compat.v1.layers.dense to replace the commented code 
@@ -348,7 +345,7 @@ class AlexNet:
         l6_FC = tf.compat.v1.layers.dense(flatten, self.hyper_param['FC6'])
 
         # Dropout layer
-        l6_dropout = tf.nn.dropout(l6_FC, self.dropout,
+        l6_dropout = tf.nn.dropout(l6_FC, 1 - (self.dropout),
                                    name='l6_dropout')
 
         # Layer 7 Fully connected layer
@@ -356,7 +353,7 @@ class AlexNet:
         self.l7_FC = tf.compat.v1.layers.dense(l6_dropout, self.hyper_param['FC7'])
 
         # Dropout layer
-        l7_dropout = tf.nn.dropout(self.l7_FC, self.dropout,
+        l7_dropout = tf.nn.dropout(self.l7_FC, 1 - (self.dropout),
                                    name='l7_dropout')
 
         # final layer before softmax
@@ -366,20 +363,20 @@ class AlexNet:
         # loss function
         loss_function = tf.nn.softmax_cross_entropy_with_logits(
             logits = self.logits,
-            labels = self.labels
+            labels = tf.stop_gradient( self.labels)
         )
 
         # total loss
-        self.loss = tf.reduce_mean(loss_function) + self.l2_loss
+        self.loss = tf.reduce_mean(input_tensor=loss_function) + self.l2_loss
 
-        self.optimizer = tf.train.MomentumOptimizer(self.learning_rate, momentum=self.momentum)\
+        self.optimizer = tf.compat.v1.train.MomentumOptimizer(self.learning_rate, momentum=self.momentum)\
                                  .minimize(self.loss, global_step=self.global_step)
 
-        correct = tf.equal(tf.argmax(self.logits, 1), tf.argmax(self.labels, 1))
-        self.accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
+        correct = tf.equal(tf.argmax(input=self.logits, axis=1), tf.argmax(input=self.labels, axis=1))
+        self.accuracy = tf.reduce_mean(input_tensor=tf.cast(correct, tf.float32))
 
-        self.top5_correct = tf.nn.in_top_k(self.logits, tf.argmax(self.labels, 1), 5)
-        self.top5_accuracy = tf.reduce_mean(tf.cast(self.top5_correct, tf.float32))
+        self.top5_correct = tf.nn.in_top_k(predictions=self.logits, targets=tf.argmax(input=self.labels, axis=1), k=5)
+        self.top5_accuracy = tf.reduce_mean(input_tensor=tf.cast(self.top5_correct, tf.float32))
 
         self.add_summaries()
 
@@ -389,11 +386,11 @@ class AlexNet:
         Add loss, top1 and top5 accuracies to summary files
         in order to visualize in tensorboard
         """
-        tf.summary.scalar('loss', self.loss)
-        tf.summary.scalar('Top-1-Acc', self.accuracy)
-        tf.summary.scalar('Top-5-Acc', self.top5_accuracy)
+        tf.compat.v1.summary.scalar('loss', self.loss)
+        tf.compat.v1.summary.scalar('Top-1-Acc', self.accuracy)
+        tf.compat.v1.summary.scalar('Top-5-Acc', self.top5_accuracy)
 
-        self.merged = tf.summary.merge_all()
+        self.merged = tf.compat.v1.summary.merge_all()
 
     def save_model(self, sess, saver):
         """
@@ -432,10 +429,10 @@ class AlexNet:
             os.makedirs(os.path.join('summary', 'train'))
         if not os.path.exists(os.path.join('summary', 'val')):
             os.makedirs(os.path.join('summary', 'val'))
-        return (tf.summary.FileWriter(os.path.join(os.getcwd(),
+        return (tf.compat.v1.summary.FileWriter(os.path.join(os.getcwd(),
                                                   'summary', 'train'),
                                       sess.graph),
-                tf.summary.FileWriter(os.path.join(os.getcwd(),
+                tf.compat.v1.summary.FileWriter(os.path.join(os.getcwd(),
                                                    'summary', 'val'),
                                       sess.graph))
 
@@ -448,10 +445,10 @@ class AlexNet:
         self.logger.info("Building the graph...")
         self.build_graph()
 
-        init = tf.global_variables_initializer()
+        init = tf.compat.v1.global_variables_initializer()
 
-        saver = tf.train.Saver()
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        saver = tf.compat.v1.train.Saver()
+        with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(log_device_placement=True)) as sess:
             (summary_writer_train,
              summary_writer_val) = self.get_summary_writer(sess)
             if self.resume and os.path.exists(os.path.join(os.getcwd(),
@@ -559,11 +556,11 @@ class AlexNet:
         self.logger_test.info("In Test: Building the graph...")
         self.build_graph()
 
-        init = tf.global_variables_initializer()
+        init = tf.compat.v1.global_variables_initializer()
 
-        saver = tf.train.Saver()
+        saver = tf.compat.v1.train.Saver()
         top1_count, top5_count, count = 0, 0, 0
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(log_device_placement=True)) as sess:
             self.restore_model(sess, saver)
 
             start = time.time()
