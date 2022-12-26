@@ -10,7 +10,7 @@ Miniconda v4.8.3 ~ v22.9.0
 Ubuntu 18.04 LTS
 CUDA 10.0.130
 cuDNN 7.3.1 
-TensorFlow 2.3
+TensorFlow 2.5 ~ 2.10.0
 Keras 2.3.1 
 
 ## For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
@@ -20,7 +20,7 @@ Ubuntu 18.04 LTS
 CUDA 11.0
 cuDNN 8.0.1
 TensorFlow 2.4
-Keras 2.4.4
+Keras 2.4 ~ 2。10.0
 
 
 # Folders 
@@ -88,34 +88,3 @@ users need to follow the procedures.
 
    The browser could not show the images. If users want to plot the images, please upload the Python script 
    into the Jupyter Notebook or just directly adopts the original ipython script. 
-  
-  
-# Trouble shooting 
-
-## The compat issue 
-
-For the error related to the environment of TensorFlow 2.x, developers can make the appropriate solutions as follows. 
-
-AttributeError: 
-module 'tensorflow' has no attribute 'compat'
-
-Solution: 
-
-It is the conflict between Conda and TensorFlow 2.x if users adopt the Anaconda/Miniconda env. I recommend 
-the users to install tensorflow 2.1 and then install tensorflw-estimator as follows. 
-
-$ conda install tensorflow-estimator==2.4.0
-
-
-## The CUPTI issue
-
-For the environment of TensorFlow 2.2.0, there is the reminidng error although the scripts runs correctly. 
-
-E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1408] function cupti_interface_->Subscribe( &subscriber_, (CUpti_CallbackFunc)ApiCallback, this)failed with error CUPTI_ERROR_INSUFFICIENT_PRIVILEGES
-E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1447] function cupti_interface_->ActivityRegisterCallbacks( AllocCuptiActivityBuffer, FreeCuptiActivityBuffer)failed with error CUPTI_ERROR_INSUFFICIENT_PRIVILEGES
-E tensorflow/core/profiler/internal/gpu/cupti_tracer.cc:1430] function cupti_interface_->EnableCallback( 0 , subscriber_, CUPTI_CB_DOMAIN_DRIVER_API, cbid)failed with error CUPTI_ERROR_INVALID_PARAMETER
-
-According to the current trace report from Nvidia CUDA Profiling Tools Interface(CUPTI), it is only the reminding message. It reminds users of the lacking super user privilege. At the presetn, it is hard to remove the reminding message. Please take the reference of the CUPTI as follows. 
-
-https://docs.nvidia.com/cupti/Cupti/index.html
-
