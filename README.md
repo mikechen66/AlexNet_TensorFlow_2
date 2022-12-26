@@ -8,26 +8,15 @@ I am pleased to update the AlexNet and its variants from small dataset to large 
 
 Miniconda v4.8.3 ~ v22.9.0
 Ubuntu 18.04 LTS
-CUDA 10.0.130
-cuDNN 7.3.1 
+CUDA 11.0 or the above
+cuDNN 8.0.1 
 TensorFlow 2.5 ~ 2.10.0
-Keras 2.3.1 
-
-## For the TensorFlow 2.2.0 environment, please run the scrip and add --cap-add=CAP_SYS_ADMIN
-
-Miniconda v4.8.3 ~ v22.9.0
-Ubuntu 18.04 LTS
-CUDA 11.0
-cuDNN 8.0.1
-TensorFlow 2.4
-Keras 2.4 ~ 2。10.0
-
+Keras 2.5 ~ 2.10.0
 
 # Folders 
 
 To use the script in Python, users need to create the folder such as Alexnet_Callback. The application 
 automatically downloads the pictures into the created folders. 
-
 
 # Script running procedure
 
