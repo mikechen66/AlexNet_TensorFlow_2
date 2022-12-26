@@ -6,12 +6,12 @@ I am pleased to update the AlexNet and its variants from small dataset to large 
 
 ## For the following development environment, develoeprs can direcly run the script. 
 
-Miniconda v22.9.0
-Ubuntu 18.04 LTS
-CUDA 11.0 or the above
-cuDNN 8.0.1 
-TensorFlow 2.10.0
-Keras 2.10.0
+  Miniconda v22.9.0
+  Ubuntu 18.04 LTS
+  CUDA 11.0 or the above
+  cuDNN 8.0.1 
+  TensorFlow 2.10.0
+  Keras 2.10.0
 
 # Folders 
 
