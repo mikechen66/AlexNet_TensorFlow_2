@@ -25,11 +25,11 @@
 # 
 # change the original line of code
 # 
-# tf.debugging.assert_scalar(data)
+# "tf.debugging.assert_scalar(data)"
 # 
 # to the following code:
 #
-# # tf.debugging.assert_scalar(data)
+# "# tf.debugging.assert_scalar(data)"
 # 
 # 3. Save the script of summary_v2.py
 # 
